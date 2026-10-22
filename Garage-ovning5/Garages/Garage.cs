@@ -150,39 +150,22 @@ namespace Garage_ovning5.Garages
 
 		public List<Vehicle>? SearchByProperties(VehicleColor? color, int? numberOfWheels, VehicleType? vehicleType)
 		{
-			int matchedSearchedCount = 0;
+			List<Vehicle> matches = new List<Vehicle>();
 
-			for (int i = 0; i < _vehicles.Count; i++)
+			foreach (Vehicle vehicle in _vehicles)
 			{
-				Vehicle vehicle = _vehicles[i];
-
 				if (MatchesSearch(vehicle, color, numberOfWheels, vehicleType))
 				{
-					matchedSearchedCount++;
+					matches.Add(vehicle);
 				}
 			}
 
-			if (matchedSearchedCount == 0)
+			if (matches.Count == 0)
 			{
 				return null;
 			}
 
-			List<Vehicle> resultArray = new List<Vehicle>(matchedSearchedCount);
-
-			int resultIndex = 0;
-
-			for (int j = 0; j < _vehicles.Count; j++)
-			{
-				Vehicle vehicle = _vehicles[j];
-
-				if (MatchesSearch(vehicle, color, numberOfWheels, vehicleType))
-				{
-					resultArray.Add(vehicle);
-
-					resultIndex++;
-				}
-			}
-			return resultArray;
+			return matches;
 		}
 	}
 }
