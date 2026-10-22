@@ -1,14 +1,16 @@
 ﻿using Garage_ovning5.Vehicles;
 using System;
+using System.Collections.Generic;
 
 namespace Garage_ovning5.Garages
 {
 	internal class Garage
 	{
 
+		private readonly int _capacity;
 		public const int MaximumCapacity = 2000;
 
-		private Vehicle?[] _vehicles;
+		private readonly List<Vehicle> _vehicles;
 
 		public Garage(int capacity)
 		{
@@ -17,38 +19,33 @@ namespace Garage_ovning5.Garages
 				throw new ArgumentOutOfRangeException(nameof(capacity), $"Capacity must be between 1 and {MaximumCapacity}");
 			}
 
-			_vehicles = new Vehicle?[capacity];
+			_capacity = capacity;
+			_vehicles = new List<Vehicle>(capacity);
 		}
 
 
 		public bool ParkVehicle(Vehicle vehicle)
 		{
-			if (IsLicensePlateTaken(vehicle.LicensePlateNumber))
+			if (!HasFreeParkingSpot())
 			{
 				return false;
 			}
 
-			for (int i = 0; i < _vehicles.Length; i++)
+			if (IsLicensePlateTaken(vehicle.LicensePlateNumber))
 			{
-				if (_vehicles[i] == null)
-				{
-					_vehicles[i] = vehicle;
-					return true;
-				}
+				return false;
 			}
+			
+			_vehicles.Add(vehicle);
+			return true;
 
-			return false;
 		}
 
 		public bool HasFreeParkingSpot()
 		{
-
-			for (int i = 0; i < _vehicles.Length; i++)
+			if (_vehicles.Count < _capacity)
 			{
-				if (_vehicles[i] == null)
-				{
-					return true;
-				}
+				return true;
 			}
 
 			return false;
@@ -78,7 +75,7 @@ namespace Garage_ovning5.Garages
 		{
 			string searchedPlate = licensePlateNumber.Trim().ToUpper();
 
-			for (int i = 0; i < _vehicles.Length; i++)
+			for (int i = 0; i < _vehicles.Count; i++)
 			{
 				Vehicle? vehicle = _vehicles[i];
 
@@ -89,7 +86,7 @@ namespace Garage_ovning5.Garages
 
 				if (vehicle.LicensePlateNumber == searchedPlate)
 				{
-					_vehicles[i] = null;
+					_vehicles.RemoveAt(i);
 					return vehicle;
 				}
 
@@ -142,7 +139,7 @@ namespace Garage_ovning5.Garages
 		{
 			string searchedPlate = licensePlateNumber.Trim().ToUpper();
 
-			for (int i = 0; i < _vehicles.Length; i++)
+			for (int i = 0; i < _vehicles.Count; i++)
 			{
 				Vehicle? vehicle = _vehicles[i];
 
@@ -182,11 +179,11 @@ namespace Garage_ovning5.Garages
 
 		}
 
-		public Vehicle[]? SearchByProperties(VehicleColor? color, int? numberOfWheels, VehicleType? vehicleType)
+		public List<Vehicle>? SearchByProperties(VehicleColor? color, int? numberOfWheels, VehicleType? vehicleType)
 		{
 			int matchedSearchedCount = 0;
 
-			for (int i = 0; i < _vehicles.Length; i++)
+			for (int i = 0; i < _vehicles.Count; i++)
 			{
 				Vehicle? vehicle = _vehicles[i];
 
@@ -207,11 +204,11 @@ namespace Garage_ovning5.Garages
 				return null;
 			}
 
-			Vehicle[] resultArray = new Vehicle[matchedSearchedCount];
+			List<Vehicle> resultArray = new List<Vehicle>(matchedSearchedCount);
 
 			int resultIndex = 0;
 
-			for (int j = 0; j < _vehicles.Length; j++)
+			for (int j = 0; j < _vehicles.Count; j++)
 			{
 				Vehicle? vehicle = _vehicles[j];
 
@@ -222,7 +219,7 @@ namespace Garage_ovning5.Garages
 
 				if (MatchesSearch(vehicle, color, numberOfWheels, vehicleType))
 				{
-					resultArray[resultIndex] = vehicle;
+					resultArray.Add(vehicle);
 
 					resultIndex++;
 				}

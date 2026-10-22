@@ -1,6 +1,7 @@
 ﻿using Garage_ovning5.Garages;
 using Garage_ovning5.Vehicles;
 using System;
+using System.Collections.Generic;
 
 namespace Garage_ovning5.UI
 {
@@ -294,7 +295,7 @@ namespace Garage_ovning5.UI
 
 			VehicleType? vehicleType = VehicleInput.ReadOptionalVehicleType();
 
-			Vehicle[]? searchedProperties = _garage.SearchByProperties(color, numberOfWheels, vehicleType);
+			List<Vehicle>? searchedProperties = _garage.SearchByProperties(color, numberOfWheels, vehicleType);
 
 			if (searchedProperties == null)
 			{
@@ -302,7 +303,7 @@ namespace Garage_ovning5.UI
 				return;
 			}
 
-			Console.WriteLine($"\nFound {searchedProperties.Length} vehicles matching your search!\n");
+			Console.WriteLine($"\nFound {searchedProperties.Count} vehicles matching your search!\n");
 
 			foreach (Vehicle vehicle in searchedProperties)
 			{
