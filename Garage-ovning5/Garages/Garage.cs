@@ -55,13 +55,8 @@ namespace Garage_ovning5.Garages
 		{
 			string searchedPlate = licensePlateNumber.Trim().ToUpper();
 
-			foreach (Vehicle? vehicle in _vehicles)
+			foreach (Vehicle vehicle in _vehicles)
 			{
-				if (vehicle == null)
-				{
-					continue;
-				}
-
 				if (vehicle.LicensePlateNumber == searchedPlate)
 				{
 					return true;
@@ -77,12 +72,7 @@ namespace Garage_ovning5.Garages
 
 			for (int i = 0; i < _vehicles.Count; i++)
 			{
-				Vehicle? vehicle = _vehicles[i];
-
-				if (vehicle == null)
-				{
-					continue;
-				}
+				Vehicle vehicle = _vehicles[i];
 
 				if (vehicle.LicensePlateNumber == searchedPlate)
 				{
@@ -99,16 +89,10 @@ namespace Garage_ovning5.Garages
 		{
 			bool vehicleFound = false;
 
-			foreach (Vehicle? vehicle in _vehicles)
+			foreach (Vehicle vehicle in _vehicles)
 			{
-				if (vehicle == null)
-				{
-					continue;
-				}
-
 				Console.WriteLine($"{vehicle}\n");
 				vehicleFound = true;
-
 			}
 
 			if (!vehicleFound)
@@ -121,11 +105,8 @@ namespace Garage_ovning5.Garages
 		{
 			int count = 0;
 
-			foreach (Vehicle? vehicle in _vehicles)
+			foreach (Vehicle vehicle in _vehicles)
 			{
-				if (vehicle == null)
-					continue;
-
 				if (vehicle.VehicleType == type)
 				{
 					count++;
@@ -141,12 +122,7 @@ namespace Garage_ovning5.Garages
 
 			for (int i = 0; i < _vehicles.Count; i++)
 			{
-				Vehicle? vehicle = _vehicles[i];
-
-				if (vehicle == null)
-				{
-					continue;
-				}
+				Vehicle vehicle = _vehicles[i];
 
 				if (vehicle.LicensePlateNumber == searchedPlate)
 				{
@@ -185,13 +161,7 @@ namespace Garage_ovning5.Garages
 
 			for (int i = 0; i < _vehicles.Count; i++)
 			{
-				Vehicle? vehicle = _vehicles[i];
-
-				if (vehicle == null)
-				{
-					continue;
-				}
-
+				Vehicle vehicle = _vehicles[i];
 
 				if (MatchesSearch(vehicle, color, numberOfWheels, vehicleType))
 				{
@@ -210,12 +180,7 @@ namespace Garage_ovning5.Garages
 
 			for (int j = 0; j < _vehicles.Count; j++)
 			{
-				Vehicle? vehicle = _vehicles[j];
-
-				if (vehicle == null)
-				{
-					continue;
-				}
+				Vehicle vehicle = _vehicles[j];
 
 				if (MatchesSearch(vehicle, color, numberOfWheels, vehicleType))
 				{
