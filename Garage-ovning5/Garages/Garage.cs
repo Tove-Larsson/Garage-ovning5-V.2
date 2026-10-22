@@ -68,21 +68,14 @@ namespace Garage_ovning5.Garages
 
 		public Vehicle? RemoveVehicle(string licensePlateNumber)
 		{
-			string searchedPlate = licensePlateNumber.Trim().ToUpper();
+			Vehicle? vehicle = SearchByLicensePlate(licensePlateNumber);
 
-			for (int i = 0; i < _vehicles.Count; i++)
+			if (vehicle != null)
 			{
-				Vehicle vehicle = _vehicles[i];
-
-				if (vehicle.LicensePlateNumber == searchedPlate)
-				{
-					_vehicles.RemoveAt(i);
-					return vehicle;
-				}
-
+				_vehicles.Remove(vehicle);
 			}
 
-			return null;
+			return vehicle;
 		}
 
 		public void ListAllVehicles()
