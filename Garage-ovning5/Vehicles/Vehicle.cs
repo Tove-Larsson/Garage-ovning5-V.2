@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Garage_ovning5.Vehicles
 {
 	internal abstract class Vehicle
 	{
-		internal const int MinimumLicensePlateLength = 6;
-
+		private const string LicensePlatePattern = "^[a-zA-Z]{3}([0-9]{3}|[0-9]{2}[a-zA-Z])$";
 		private string _licensePlateNumber = string.Empty;
 		private VehicleColor _color;
 		private int _numberOfWheels;
@@ -18,10 +18,10 @@ namespace Garage_ovning5.Vehicles
 			{
 				if (!IsValidLicensePlate(value))
 				{
-					throw new ArgumentException($"License plate number must be at least {MinimumLicensePlateLength} characters and contain only letters and digits");
+					throw new ArgumentException("\nLicense plate number must be three letters followed by three digits (e.g. ABC123), or three letters, two digits and one letter (e.g. ABC12D)\n");
 				}
 
-				_licensePlateNumber = value.Trim().ToUpper();
+				_licensePlateNumber = value.ToUpperInvariant();
 			}
 		}
 
@@ -52,8 +52,8 @@ namespace Garage_ovning5.Vehicles
 			LicensePlateNumber = licensePlateNumber;
 			Color = color;
 			NumberOfWheels = numberOfWheels;
-
 		}
+
 		public static bool IsValidLicensePlate(string? licensePlateNumber)
 		{
 			if (string.IsNullOrWhiteSpace(licensePlateNumber))
@@ -61,22 +61,7 @@ namespace Garage_ovning5.Vehicles
 				return false;
 			}
 
-			string trimmed = licensePlateNumber.Trim();
-
-			if (trimmed.Length < MinimumLicensePlateLength)
-			{
-				return false;
-			}
-
-			foreach (char c in trimmed)
-			{
-				if (!char.IsLetterOrDigit(c))
-				{
-					return false;
-				}
-			}
-
-			return true;
+			return Regex.IsMatch(licensePlateNumber, LicensePlatePattern);
 		}
 
 		public override string ToString()

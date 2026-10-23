@@ -20,7 +20,7 @@ namespace Garage_ovning5.UI
 					return input.Trim().ToUpper();
 				}
 
-				Console.WriteLine($"License plate number must be at least {Vehicle.MinimumLicensePlateLength} characters and contain only letters and digits");
+				Console.WriteLine($"\nLicense plate number must be three letters followed by three digits (e.g. ABC123), or three letters, two digits and one letter (e.g. ABC12D)\n");
 			}
 		}
 
