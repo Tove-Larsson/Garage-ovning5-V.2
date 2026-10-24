@@ -11,7 +11,7 @@ namespace Garage_ovning5.UI
 
 			while (true)
 			{
-				Console.WriteLine("What is your vehicles license plate number?");
+				Console.WriteLine("\nWhat is your vehicles license plate number?\n");
 
 				string input = Console.ReadLine() ?? string.Empty;
 

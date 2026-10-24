@@ -56,7 +56,7 @@ namespace Garage_ovning5.UI
 
 				if (int.TryParse(Console.ReadLine(), out int parkingSpaces) && parkingSpaces > 0 && parkingSpaces <= Garage.MaximumCapacity)
 				{
-					Console.WriteLine($"A garage has been created with {parkingSpaces} parking spaces!");
+					Console.WriteLine($"\nA garage has been created with {parkingSpaces} parking spaces!\n");
 					_garage = new Garage(parkingSpaces);
 					garageCreated = true;
 				}
@@ -157,7 +157,7 @@ namespace Garage_ovning5.UI
 
 			if (_garage.IsLicensePlateTaken(licensePlateNumber))
 			{
-				Console.WriteLine($"A vehicle with licence plate number: {licensePlateNumber} already exists");
+				Console.WriteLine($"\nA vehicle with licence plate number: {licensePlateNumber} already existsn\n");
 				return;
 			}
 
@@ -209,7 +209,7 @@ namespace Garage_ovning5.UI
 				return;
 			}
 
-			string licensePlateNumber = InputHelper.ReadString("Please enter the license plate number of the vehicle you want to retrieve");
+			string licensePlateNumber = InputHelper.ReadString("\nPlease enter the license plate number of the vehicle you want to retrieve\n");
 
 			Vehicle? retrievedVehicle = _garage.RemoveVehicle(licensePlateNumber);
 
