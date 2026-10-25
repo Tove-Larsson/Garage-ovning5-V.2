@@ -32,7 +32,7 @@ namespace Garage_ovning5.UI
 		private static Vehicle? CreateCar(string licensePlateNumber, VehicleColor color)
 		{
 
-			int numberOfWheels = InputHelper.ReadInt("How many wheels do your car have?");
+			int numberOfWheels = InputHelper.ReadInt("How many wheels does your car have?");
 			FuelType? fuelType = ReadFuelType();
 
 			if (fuelType != null)
@@ -71,7 +71,7 @@ namespace Garage_ovning5.UI
 
 		private static Vehicle? CreateMotorcycle(string licensePlateNumber, VehicleColor color)
 		{
-			int numberOfWheels = InputHelper.ReadInt("How many wheels do your motorcycle have?");
+			int numberOfWheels = InputHelper.ReadInt("How many wheels does your motorcycle have?");
 			int cylinderVolume = InputHelper.ReadInt("What is your motorcycles cylinder volume?");
 
 			return new Motorcycle(licensePlateNumber, color, numberOfWheels, cylinderVolume);
@@ -81,14 +81,14 @@ namespace Garage_ovning5.UI
 		private static Vehicle? CreateBus(string licensePlateNumber, VehicleColor color)
 		{
 			int numberOfSeats = InputHelper.ReadInt("How many seats does your bus have?");
-			int numberOfWheels = InputHelper.ReadInt("How many wheels do your bus have?");
+			int numberOfWheels = InputHelper.ReadInt("How many wheels does your bus have?");
 			
 			return new Bus(licensePlateNumber, color, numberOfWheels, numberOfSeats);
 		}
 
 		private static Vehicle? CreateAirplane(string licensePlateNumber, VehicleColor color)
 		{
-			int numberOfWheels = InputHelper.ReadInt("How many wheels do your airplane have?");
+			int numberOfWheels = InputHelper.ReadInt("How many wheels does your airplane have?");
 			int numberOfEngines = InputHelper.ReadInt("How many engines does your airplane have?");
 
 			return new Airplane(licensePlateNumber, color, numberOfWheels, numberOfEngines);

@@ -157,7 +157,7 @@ namespace Garage_ovning5.UI
 
 			if (_garage.IsLicensePlateTaken(licensePlateNumber))
 			{
-				Console.WriteLine($"\nA vehicle with licence plate number: {licensePlateNumber} already existsn\n");
+				Console.WriteLine($"\nA vehicle with licence plate number: {licensePlateNumber} already exists\n");
 				return;
 			}
 
