@@ -2,10 +2,13 @@
 
 Konsolapplikation som simulerar ett garage. Fordon kan parkeras, hämtas ut, listas och sökas.
 
-## Användning
-Programmet startar i huvudmenyn, där man väljer mellan:
-- ett tomt garage, där antalet parkeringsplatser anges (1-2000)
-- ett garage med förparkerade fordon
+## Köra programmet
+1. Klona repot och öppna `Garage-ovning5.slnx` i Visual Studio, tryck F5.
+   Eller kör `dotnet run` i projektmappen.
+2. Välj i huvudmenyn mellan tomt garage och garage med förparkerade fordon.
+
+## Kända begränsningar
+- Alla fordon tar en parkeringsplats, oavsett typ.
 
 ## Funktioner
 - Parkera och hämta ut fordon
