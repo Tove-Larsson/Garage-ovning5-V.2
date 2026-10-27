@@ -14,7 +14,7 @@ namespace Garage_ovning5.Vehicles
 		public string LicensePlateNumber
 		{
 			get { return _licensePlateNumber; }
-			set
+			private set
 			{
 				string normalized = NormalizeLicensePlate(value);
 
