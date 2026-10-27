@@ -7,9 +7,8 @@ namespace Garage_ovning5.Garages
 	internal class Garage
 	{
 
-		private readonly int _capacity;
 		public const int MaximumCapacity = 2000;
-
+		private readonly int _capacity;
 		private readonly List<Vehicle> _vehicles;
 
 		public Garage(int capacity)
@@ -21,6 +20,16 @@ namespace Garage_ovning5.Garages
 
 			_capacity = capacity;
 			_vehicles = new List<Vehicle>(capacity);
+		}
+
+		public int Capacity
+		{
+			get { return _capacity; }
+		}
+
+		public int FreeSpaces
+		{
+			get { return _capacity - _vehicles.Count; }
 		}
 
 

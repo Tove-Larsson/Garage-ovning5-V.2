@@ -97,6 +97,11 @@ namespace Garage_ovning5.UI
 				Console.ResetColor();
 				Console.WriteLine("Please select what you want to do!\n");
 
+				if (_garage is not null)
+				{
+					Console.WriteLine($"The garage has {_garage.FreeSpaces} free spaces, {_garage.Capacity} in total\n");
+				}
+
 				Console.WriteLine("1. Park a vehicle");
 				Console.WriteLine("2. Retrieve a vehicle");
 				Console.WriteLine("3. List all parked vehicles");
