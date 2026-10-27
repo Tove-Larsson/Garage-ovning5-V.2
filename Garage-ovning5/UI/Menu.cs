@@ -295,9 +295,9 @@ namespace Garage_ovning5.UI
 
 			VehicleType? vehicleType = VehicleInput.ReadOptionalVehicleType();
 
-			List<Vehicle>? searchedProperties = _garage.SearchByProperties(color, numberOfWheels, vehicleType);
+			List<Vehicle> searchedProperties = _garage.SearchByProperties(color, numberOfWheels, vehicleType);
 
-			if (searchedProperties == null)
+			if (searchedProperties.Count == 0)
 			{
 				Console.WriteLine("\nNo parked vehicle matched your search\n");
 				return;

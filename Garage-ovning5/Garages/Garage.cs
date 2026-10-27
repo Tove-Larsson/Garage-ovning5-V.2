@@ -148,7 +148,7 @@ namespace Garage_ovning5.Garages
 
 		}
 
-		public List<Vehicle>? SearchByProperties(VehicleColor? color, int? numberOfWheels, VehicleType? vehicleType)
+		public List<Vehicle> SearchByProperties(VehicleColor? color, int? numberOfWheels, VehicleType? vehicleType)
 		{
 			List<Vehicle> matches = new List<Vehicle>();
 
@@ -158,11 +158,6 @@ namespace Garage_ovning5.Garages
 				{
 					matches.Add(vehicle);
 				}
-			}
-
-			if (matches.Count == 0)
-			{
-				return null;
 			}
 
 			return matches;
