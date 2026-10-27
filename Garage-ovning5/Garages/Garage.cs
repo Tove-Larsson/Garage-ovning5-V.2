@@ -89,17 +89,15 @@ namespace Garage_ovning5.Garages
 
 		public void ListAllVehicles()
 		{
-			bool vehicleFound = false;
+			if (_vehicles.Count == 0)
+			{
+				Console.WriteLine("There are no vehicles parked in the garage.\n");
+				return;
+			}
 
 			foreach (Vehicle vehicle in _vehicles)
 			{
 				Console.WriteLine($"{vehicle}\n");
-				vehicleFound = true;
-			}
-
-			if (!vehicleFound)
-			{
-				Console.WriteLine("There are no vehicles parked in the garage.\n");
 			}
 		}
 
