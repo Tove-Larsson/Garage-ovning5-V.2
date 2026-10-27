@@ -35,7 +35,7 @@ namespace Garage_ovning5.UI
 			int numberOfWheels = InputHelper.ReadInt("How many wheels does your car have?");
 			FuelType? fuelType = ReadFuelType();
 
-			if (fuelType != null)
+			if (fuelType is not null)
 			{
 				return new Car(licensePlateNumber, color, numberOfWheels, fuelType.Value);
 			}

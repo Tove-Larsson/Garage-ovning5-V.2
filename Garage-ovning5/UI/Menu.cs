@@ -146,7 +146,7 @@ namespace Garage_ovning5.UI
 
 		private void HandleParkVehicle()
 		{
-			if (_garage == null)
+			if (_garage is null)
 			{
 				Console.WriteLine("No garage exists");
 				return;
@@ -169,7 +169,7 @@ namespace Garage_ovning5.UI
 			VehicleColor color = VehicleInput.ReadVehicleColor();
 
 			VehicleType? type = VehicleInput.ReadVehicleType();
-			if (type == null)
+			if (type is null)
 			{
 				Console.WriteLine("\nParking cancelled\n");
 				return;
@@ -180,7 +180,7 @@ namespace Garage_ovning5.UI
 			{
 
 				Vehicle? vehicle = VehicleCreator.CreateVehicle(licensePlateNumber, color, type.Value);
-				if (vehicle == null)
+				if (vehicle is null)
 				{
 					Console.WriteLine("\nParking cancelled\n");
 					return;
@@ -208,7 +208,7 @@ namespace Garage_ovning5.UI
 
 		private void HandleRetrieveVehicle()
 		{
-			if (_garage == null)
+			if (_garage is null)
 			{
 				Console.WriteLine("No garage exists");
 				return;
@@ -230,7 +230,7 @@ namespace Garage_ovning5.UI
 
 		private void HandleListParkedVehicles()
 		{
-			if (_garage == null)
+			if (_garage is null)
 			{
 				Console.WriteLine("No garage exists");
 				return;
@@ -245,7 +245,7 @@ namespace Garage_ovning5.UI
 
 		private void HandleListVehicleTypes()
 		{
-			if ( _garage == null)
+			if ( _garage is null)
 			{
 				Console.WriteLine("No garage exists");
 				return;
@@ -265,7 +265,7 @@ namespace Garage_ovning5.UI
 
 		private void HandleSearchByLicensePlate()
 		{
-			if (_garage == null)
+			if (_garage is null)
 			{
 				Console.WriteLine("No garage exists");
 				return;
@@ -288,7 +288,7 @@ namespace Garage_ovning5.UI
 
 		private void HandleSearchByProperties()
 		{
-			if (_garage == null)
+			if (_garage is null)
 			{
 				Console.WriteLine("No garage exists");
 				return;

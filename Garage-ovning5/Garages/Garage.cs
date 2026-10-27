@@ -79,7 +79,7 @@ namespace Garage_ovning5.Garages
 		{
 			Vehicle? vehicle = SearchByLicensePlate(licensePlateNumber);
 
-			if (vehicle != null)
+			if (vehicle is not null)
 			{
 				_vehicles.Remove(vehicle);
 			}
@@ -138,17 +138,17 @@ namespace Garage_ovning5.Garages
 
 		private static bool MatchesSearch(Vehicle vehicle, VehicleColor? color, int? wheels, VehicleType? type)
 		{
-			if (color != null && vehicle.Color != color)
+			if (color is not null && vehicle.Color != color)
 			{
 				return false;
 			}
 
-			if (wheels != null && vehicle.NumberOfWheels != wheels)
+			if (wheels is not null && vehicle.NumberOfWheels != wheels)
 			{
 				return false;
 			}
 
-			if (type != null && vehicle.VehicleType != type)
+			if (type is not null && vehicle.VehicleType != type)
 			{
 				return false;
 			}
