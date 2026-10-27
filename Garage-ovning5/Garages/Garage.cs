@@ -7,9 +7,8 @@ namespace Garage_ovning5.Garages
 	internal class Garage
 	{
 
-		private readonly int _capacity;
 		public const int MaximumCapacity = 2000;
-
+		private readonly int _capacity;
 		private readonly List<Vehicle> _vehicles;
 
 		public Garage(int capacity)
@@ -21,6 +20,16 @@ namespace Garage_ovning5.Garages
 
 			_capacity = capacity;
 			_vehicles = new List<Vehicle>(capacity);
+		}
+
+		public int Capacity
+		{
+			get { return _capacity; }
+		}
+
+		public int FreeSpaces
+		{
+			get { return _capacity - _vehicles.Count; }
 		}
 
 
@@ -53,7 +62,7 @@ namespace Garage_ovning5.Garages
 
 		public bool IsLicensePlateTaken(string licensePlateNumber)
 		{
-			string searchedPlate = licensePlateNumber.Trim().ToUpper();
+			string searchedPlate = Vehicle.NormalizeLicensePlate(licensePlateNumber);
 
 			foreach (Vehicle vehicle in _vehicles)
 			{
@@ -70,7 +79,7 @@ namespace Garage_ovning5.Garages
 		{
 			Vehicle? vehicle = SearchByLicensePlate(licensePlateNumber);
 
-			if (vehicle != null)
+			if (vehicle is not null)
 			{
 				_vehicles.Remove(vehicle);
 			}
@@ -80,17 +89,15 @@ namespace Garage_ovning5.Garages
 
 		public void ListAllVehicles()
 		{
-			bool vehicleFound = false;
+			if (_vehicles.Count == 0)
+			{
+				Console.WriteLine("There are no vehicles parked in the garage.\n");
+				return;
+			}
 
 			foreach (Vehicle vehicle in _vehicles)
 			{
 				Console.WriteLine($"{vehicle}\n");
-				vehicleFound = true;
-			}
-
-			if (!vehicleFound)
-			{
-				Console.WriteLine("There are no vehicles parked in the garage.\n");
 			}
 		}
 
@@ -111,7 +118,7 @@ namespace Garage_ovning5.Garages
 
 		public Vehicle? SearchByLicensePlate(string licensePlateNumber)
 		{
-			string searchedPlate = licensePlateNumber.Trim().ToUpper();
+			string searchedPlate = Vehicle.NormalizeLicensePlate(licensePlateNumber);
 
 			for (int i = 0; i < _vehicles.Count; i++)
 			{
@@ -129,17 +136,17 @@ namespace Garage_ovning5.Garages
 
 		private static bool MatchesSearch(Vehicle vehicle, VehicleColor? color, int? wheels, VehicleType? type)
 		{
-			if (color != null && vehicle.Color != color)
+			if (color is not null && vehicle.Color != color)
 			{
 				return false;
 			}
 
-			if (wheels != null && vehicle.NumberOfWheels != wheels)
+			if (wheels is not null && vehicle.NumberOfWheels != wheels)
 			{
 				return false;
 			}
 
-			if (type != null && vehicle.VehicleType != type)
+			if (type is not null && vehicle.VehicleType != type)
 			{
 				return false;
 			}
@@ -148,7 +155,7 @@ namespace Garage_ovning5.Garages
 
 		}
 
-		public List<Vehicle>? SearchByProperties(VehicleColor? color, int? numberOfWheels, VehicleType? vehicleType)
+		public List<Vehicle> SearchByProperties(VehicleColor? color, int? numberOfWheels, VehicleType? vehicleType)
 		{
 			List<Vehicle> matches = new List<Vehicle>();
 
@@ -158,11 +165,6 @@ namespace Garage_ovning5.Garages
 				{
 					matches.Add(vehicle);
 				}
-			}
-
-			if (matches.Count == 0)
-			{
-				return null;
 			}
 
 			return matches;

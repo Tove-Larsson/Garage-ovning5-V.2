@@ -5,22 +5,20 @@ namespace Garage_ovning5.UI
 {
 	internal static class VehicleInput
 	{
-
 		public static string ReadLicensePlateNumber()
 		{
-
 			while (true)
 			{
 				Console.WriteLine("\nWhat is your vehicles license plate number?\n");
 
-				string input = Console.ReadLine() ?? string.Empty;
+				string input = Vehicle.NormalizeLicensePlate(Console.ReadLine());
 
 				if (Vehicle.IsValidLicensePlate(input))
 				{
-					return input.Trim().ToUpper();
+					return input;
 				}
 
-				Console.WriteLine($"\nLicense plate number must be three letters followed by three digits (e.g. ABC123), or three letters, two digits and one letter (e.g. ABC12D)\n");
+				Console.WriteLine("\nLicense plate number must be three letters followed by three digits (e.g. ABC123), or three letters, two digits and one letter (e.g. ABC12D)\n");
 			}
 		}
 
