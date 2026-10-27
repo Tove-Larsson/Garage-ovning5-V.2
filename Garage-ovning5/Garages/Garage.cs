@@ -53,7 +53,7 @@ namespace Garage_ovning5.Garages
 
 		public bool IsLicensePlateTaken(string licensePlateNumber)
 		{
-			string searchedPlate = licensePlateNumber.Trim().ToUpper();
+			string searchedPlate = Vehicle.NormalizeLicensePlate(licensePlateNumber);
 
 			foreach (Vehicle vehicle in _vehicles)
 			{
@@ -111,7 +111,7 @@ namespace Garage_ovning5.Garages
 
 		public Vehicle? SearchByLicensePlate(string licensePlateNumber)
 		{
-			string searchedPlate = licensePlateNumber.Trim().ToUpper();
+			string searchedPlate = Vehicle.NormalizeLicensePlate(licensePlateNumber);
 
 			for (int i = 0; i < _vehicles.Count; i++)
 			{

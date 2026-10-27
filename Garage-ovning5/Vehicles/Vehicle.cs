@@ -16,12 +16,14 @@ namespace Garage_ovning5.Vehicles
 			get { return _licensePlateNumber; }
 			set
 			{
-				if (!IsValidLicensePlate(value))
+				string normalized = NormalizeLicensePlate(value);
+
+				if (!IsValidLicensePlate(normalized))
 				{
 					throw new ArgumentException("\nLicense plate number must be three letters followed by three digits (e.g. ABC123), or three letters, two digits and one letter (e.g. ABC12D)\n");
 				}
 
-				_licensePlateNumber = value.ToUpperInvariant();
+				_licensePlateNumber = normalized;
 			}
 		}
 
@@ -62,6 +64,11 @@ namespace Garage_ovning5.Vehicles
 			}
 
 			return Regex.IsMatch(licensePlateNumber, LicensePlatePattern);
+		}
+
+		public static string NormalizeLicensePlate(string? licensePlateNumber)
+		{
+			return licensePlateNumber?.Trim().ToUpperInvariant() ?? string.Empty;
 		}
 
 		public override string ToString()

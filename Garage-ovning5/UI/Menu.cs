@@ -271,7 +271,7 @@ namespace Garage_ovning5.UI
 
 			if (vehicle != null)
 			{
-				Console.WriteLine($"\nA parked vehicle with {searchedLicensePlate.ToUpper()} was found!\n");
+				Console.WriteLine($"\nA parked vehicle with {vehicle.LicensePlateNumber} was found!\n");
 				Console.WriteLine(vehicle);
 			}
 			else
