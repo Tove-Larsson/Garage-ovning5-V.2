@@ -18,5 +18,24 @@ namespace Garage_ovning5.Tests
 			//Assert
 			Assert.Equal(expected, result);
 		}
+
+		[Theory]
+		[InlineData(-1)]
+		[InlineData(-22)]
+		public void Constructor_WithNegativeNumberOfWheels_Throws(int wheels)
+		{
+			Assert.Throws<ArgumentException>(() =>
+				new Car("ABC123", VehicleColor.Red, wheels, FuelType.Diesel));
+		}
+
+		[Theory]
+		[InlineData(0)]
+		[InlineData(4)]
+		public void Constructor_WithValidNumberOfWheels_StoresValue(int wheels)
+		{
+			Car car = new Car("ABC123", VehicleColor.Red, wheels, FuelType.Diesel);
+
+			Assert.Equal(wheels, car.NumberOfWheels);
+		}
 	}
 }
