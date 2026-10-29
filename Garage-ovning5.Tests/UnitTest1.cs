@@ -12,10 +12,8 @@ namespace Garage_ovning5.Tests
 		[InlineData(null, "")]
 		public void NormalizeLicensePlate_TrimsAndUppercases(string? input, string expected)
 		{
-			//Act
 			string result = Vehicle.NormalizeLicensePlate(input);
 
-			//Assert
 			Assert.Equal(expected, result);
 		}
 
@@ -36,6 +34,37 @@ namespace Garage_ovning5.Tests
 			Car car = new Car("ABC123", VehicleColor.Red, wheels, FuelType.Diesel);
 
 			Assert.Equal(wheels, car.NumberOfWheels);
+		}
+
+
+		[Theory]
+		[InlineData("ABC123")]
+		[InlineData("ABC12D")]
+		[InlineData("abc123")]
+		[InlineData("abc12d")]
+		public void IsValidLicensePlate_WithValidFormat_ReturnsTrue(string input)
+		{
+			bool result = Vehicle.IsValidLicensePlate(input);
+
+			Assert.True(result);
+		}
+
+		[Theory]
+		[InlineData("AB123")]
+		[InlineData("ABC1234")]
+		[InlineData("123ABC")]
+		[InlineData("ABC1D2")]
+		[InlineData(" ABC123 ")]
+		[InlineData("ABC 123")]
+		[InlineData("ABC-123")]
+		[InlineData(" ")]
+		[InlineData("")]
+		[InlineData(null)]
+		public void IsValidLicensePlate_WithInvalidFormat_ReturnsFalse(string? input)
+		{
+			bool result = Vehicle.IsValidLicensePlate(input);
+
+			Assert.False(result);
 		}
 	}
 }
